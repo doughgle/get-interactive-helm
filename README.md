@@ -3,10 +3,11 @@
 > For Helm 3.
 
 ## Table of Contents
-1. [Concepts](#concepts)
-2. [Example2](#example2)
-3. [Third Example](#third-example)
-4. [Fourth Example](#fourth-examplehttpwwwfourthexamplecom)
+1. [Concepts](#Concepts)
+1. [About the Project](#About)
+2. [Conventions](#conventions)
+1. [Use Cases](#usecases)
+3. [Quick Start - Get Interactive with helm !](#quickstart)
 
 ## Concepts
 
@@ -101,7 +102,11 @@ Its an indexed filesystem of `.tgz` archives.
 
 A **Plugin** is a Helm client extension providing extra sub-commands or features (e.g. `helm diff`).
 
+----
+
 ## About the Project
+
+----
 
 ## Conventions
 
@@ -137,6 +142,8 @@ e.g. helm-cheat-sheet
 
 The term chart does not need to be capitalized, as it is not a proper noun.
 
+----
+
 ## Use Cases
 
 #### Complementary Operations
@@ -157,18 +164,31 @@ Operation | Description | |
  **Lint**    | examine a chart for possible issues | `helm lint PATH`
  **Package** | package a chart directory into a chart archive | `helm package [CHART_PATH] [...]`
 
+----
+
 ## Quick Start - Get Interactive with helm !
 
-#### Run a helm container
-> The fastest feedback is Interactive!
+#### Before you begin
 
-Run the example container with `helm` client pre-installed and helm bash completion pre-configured.
+> Note: You need to have a Kubernetes cluster, and the kubectl command-line tool must be configured to communicate with your cluster. If you do not already have a cluster, you can create one by using minikube or you can use one of these Kubernetes playgrounds:
+
++ [Katacoda](https://www.katacoda.com/courses/kubernetes/playground)
++ [Play with Kubernetes](https://labs.play-with-k8s.com/)
+
+#### Run a helm container
+> The fastest feedback is Interactive !
+
+Run an interactive terminal in a new container from the container image `doughgle/helm-cheat-sheet`. The container image has `helm` client pre-installed and helm bash completion pre-configured.
+
 
 ```bash
-$ sudo docker run --rm -it doughgle/helm-cheat-sheet bash
+$ sudo docker run --rm \
+-v $HOME/.kube/config:/etc/kubernetes/user.kubeconfig \
+-e KUBECONFIG=/etc/kubernetes/user.kubeconfig \
+-it doughgle/helm-cheat-sheet bash
 ```
 
-Use double `<TAB>` to auto-complete commands.
+Use double `<TAB>` to auto-complete `helm` commands.
 
 Example:
 
@@ -183,4 +203,13 @@ create      diff        get         history     lint        package     pull    
 ```bash
 $ helm repo add bitnami https://charts.bitnami.com/bitnami
 $ helm install my-release bitnami/nginx
+```
+
+Now list the releases to see `my-release`.
+
+```bash
+helm ls
+NAME            NAMESPACE       REVISION        UPDATED                                 STATUS          CHART           APP VERSION
+my-release      default         1               2020-12-17 03:44:34.106476211 +0000 UTC deployed        nginx-8.2.2     1.19.6
+controlplane $
 ```
