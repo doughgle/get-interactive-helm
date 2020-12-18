@@ -3,11 +3,11 @@
 > For Helm 3.
 
 ## Table of Contents
-1. [Concepts](#Concepts)
-1. [About the Project](#About)
+1. [Concepts](#concepts)
+1. [About the Project](#about-the-project)
 2. [Conventions](#conventions)
-1. [Use Cases](#usecases)
-3. [Quick Start - Get Interactive with helm !](#quickstart)
+1. [Use Cases](#use-cases)
+3. [Quick Start - Get Interactive with helm !](#quick-start---get-interactive-with-helm-)
 
 ## Concepts
 
