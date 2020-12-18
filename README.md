@@ -185,7 +185,6 @@ Run an interactive terminal in a new container from the container image `doughgl
 $ sudo docker run --rm \
 -v $HOME/.kube/config:/etc/kubernetes/user.kubeconfig \
 -e KUBECONFIG=/etc/kubernetes/user.kubeconfig \
--it doughgle/helm-cheat-sheet bash
 -it doughgle/get-interactive-helm bash
 ```
 
