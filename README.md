@@ -1,17 +1,17 @@
-# Helm Cheat Sheet
+# Get Interactive with Helm !
 
-> For Helm 3.
+> The fastest feedback is Interactive !
 
 ## Table of Contents
 1. [Concepts](#concepts)
+1. [Get Interactive !](#get-interactive-)
 1. [About the Project](#about-the-project)
-2. [Conventions](#conventions)
+1. [Conventions](#conventions)
 1. [Use Cases](#use-cases)
-3. [Quick Start - Get Interactive with helm !](#quick-start---get-interactive-with-helm-)
 
 ## Concepts
 
-#### Quick Helm Definitions
+#### Quick Definitions
 
 Term     | Description
 ---      | ---
@@ -22,6 +22,8 @@ Revision | Snapshot of a **Release** in history.
 Repository (repo) | A place to store and search for versioned **charts**. Its an indexed filesystem of `.tgz` archives.
 Helm Hub (artifacthub.io) | A portal for finding Helm charts across community **repos**.
 Plugin | A Helm client extension providing extra sub-commands or features (e.g. `helm diff`).
+
+#### Introductory Reading
 
 **Helm** is a **Package Manager** for **Kubernetes**.
 
@@ -75,7 +77,7 @@ File/Directory | Description
 `│       └── test-connection.yaml` |
 `└── values.yaml` | contains key-value pairs to be rendered in templates during Helm pre-processing stage.
 
-A Helm **Release** is a named, deployed instance of the Chart.
+A Helm **Release** is a named, deployed instance of the Chart. A Release has the following elements.
 
 Element of a Release | Description
 --- | ---
@@ -84,7 +86,7 @@ Element of a Release | Description
 `notes`       |      welcome banner and getting started messages shown on successful install or upgrade.
 `values`      |      values used to generate the release.
 
-A **Revision** is a snapshot of a **Release** in history.
+A **Revision** is a snapshot of a **Release** in history. The Revision is incremented automatically on upgrade. You can roll back to a chosen revision.
 
 ```sh
 $ helm history angry-bird
@@ -101,6 +103,56 @@ Its an indexed filesystem of `.tgz` archives.
 **Helm Hub** (now [artifacthub.io](https://artifacthub.io)) is a portal for finding Helm Charts across community **repositories**.
 
 A **Plugin** is a Helm client extension providing extra sub-commands or features (e.g. `helm diff`).
+
+----
+
+## Get Interactive !
+
+#### Before you begin
+
+> Note: You need to have a Kubernetes cluster, and the kubectl command-line tool must be configured to communicate with your cluster. If you do not already have a cluster, you can create one by using minikube or you can use one of these Kubernetes playgrounds:
+
++ [Katacoda](https://www.katacoda.com/courses/kubernetes/playground)
++ [Play with Kubernetes](https://labs.play-with-k8s.com/)
+
+#### Run a helm container
+> The fastest feedback is Interactive !
+
+Run an interactive terminal in a new container from the container image `doughgle/helm-cheat-sheet`. The container image has `helm` client pre-installed and helm bash completion pre-configured.
+
+
+```bash
+$ sudo docker run --rm \
+-v $HOME/.kube/config:/home/getia/.kube/config:ro \
+-e KUBECONFIG=/etc/kubernetes/user.kubeconfig \
+-it doughgle/get-interactive-helm bash
+```
+
+Use double `<TAB>` to auto-complete `helm` commands.
+
+Example:
+
+```
+bash-5.0# helm <TAB><TAB>
+completion  dependency  env         helm-git    install     list        plugin      repo        s3          secrets     status      test        upgrade     version     
+create      diff        get         history     lint        package     pull        rollback    search      show        template    uninstall   verify
+```
+
+#### Install a chart
+
+```bash
+$ helm repo add bitnami https://charts.bitnami.com/bitnami
+$ helm install my-release bitnami/nginx
+```
+
+Now list the releases to see `my-release`.
+
+```bash
+helm ls
+NAME            NAMESPACE       REVISION        UPDATED                                 STATUS          CHART           APP VERSION
+my-release      default         1               2020-12-17 03:44:34.106476211 +0000 UTC deployed        nginx-8.2.2     1.19.6
+controlplane $
+```
 
 ----
 
@@ -163,53 +215,3 @@ Operation | Description | |
  **Create**  | create a new chart with the given name | `helm create NAME`
  **Lint**    | examine a chart for possible issues | `helm lint PATH`
  **Package** | package a chart directory into a chart archive | `helm package [CHART_PATH] [...]`
-
-----
-
-## Quick Start - Get Interactive with helm !
-
-#### Before you begin
-
-> Note: You need to have a Kubernetes cluster, and the kubectl command-line tool must be configured to communicate with your cluster. If you do not already have a cluster, you can create one by using minikube or you can use one of these Kubernetes playgrounds:
-
-+ [Katacoda](https://www.katacoda.com/courses/kubernetes/playground)
-+ [Play with Kubernetes](https://labs.play-with-k8s.com/)
-
-#### Run a helm container
-> The fastest feedback is Interactive !
-
-Run an interactive terminal in a new container from the container image `doughgle/helm-cheat-sheet`. The container image has `helm` client pre-installed and helm bash completion pre-configured.
-
-
-```bash
-$ sudo docker run --rm \
--v $HOME/.kube/config:/etc/kubernetes/user.kubeconfig \
--e KUBECONFIG=/etc/kubernetes/user.kubeconfig \
--it doughgle/get-interactive-helm bash
-```
-
-Use double `<TAB>` to auto-complete `helm` commands.
-
-Example:
-
-```
-bash-5.0# helm <TAB><TAB>
-completion  dependency  env         helm-git    install     list        plugin      repo        s3          secrets     status      test        upgrade     version     
-create      diff        get         history     lint        package     pull        rollback    search      show        template    uninstall   verify
-```
-
-#### Install a chart
-
-```bash
-$ helm repo add bitnami https://charts.bitnami.com/bitnami
-$ helm install my-release bitnami/nginx
-```
-
-Now list the releases to see `my-release`.
-
-```bash
-helm ls
-NAME            NAMESPACE       REVISION        UPDATED                                 STATUS          CHART           APP VERSION
-my-release      default         1               2020-12-17 03:44:34.106476211 +0000 UTC deployed        nginx-8.2.2     1.19.6
-controlplane $
-```
