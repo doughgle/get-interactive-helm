@@ -130,7 +130,7 @@ $ sudo docker run --rm \
 -it doughgle/get-interactive-helm bash
 ```
 
-##### Interactive Example
+#### Interactive Example
 
 Use double `<TAB>` to auto-complete `helm` commands.
 
