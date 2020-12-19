@@ -44,7 +44,7 @@ Helm | chart (lowercase by convention) | `.tgz` - gzip compressed, tar archive
 YUM | RPM | `.rpm`
 APT | deb | `.deb`
 
-A Helm **chart** is a software package for Kubernetes.
+A Helm **chart** is a software package for Kubernetes. It might be a packaged application like Wordpress, or a middlware service like RabbitMQ.
 
 ###### Chart structure
 
