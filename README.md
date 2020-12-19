@@ -130,14 +130,23 @@ $ sudo docker run --rm \
 -it doughgle/get-interactive-helm bash
 ```
 
-Use double `<TAB>` to auto-complete `helm` commands.
+##### Interactive Example
 
-Example:
+Use double `<TAB>` to auto-complete `helm` commands.
 
 ```
 bash-5.0# helm <TAB><TAB>
 completion  dependency  env         helm-git    install     list        plugin      repo        s3          secrets     status      test        upgrade     version     
 create      diff        get         history     lint        package     pull        rollback    search      show        template    uninstall   verify
+```
+```
+bash-5.0$ helm ver
+verify   version
+```
+```
+bash-5.0$ helm version
+W1219 03:52:04.650624      48 loader.go:223] Config not found: /etc/kubernetes/user.kubeconfig
+version.BuildInfo{Version:"v3.3.4", GitCommit:"a61ce5633af99708171414353ed49547cf05013d", GitTreeState:"clean", GoVersion:"go1.14.9"}
 ```
 
 #### Install a chart
