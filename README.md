@@ -10,6 +10,7 @@
 1. [Use Cases](#use-cases)
 
 ## Concepts
+[<sup>Top</sup>](#table-of-contents)
 
 #### Quick Definitions
 
@@ -107,6 +108,7 @@ A **Plugin** is a Helm client extension providing extra sub-commands or features
 ----
 
 ## Get Interactive !
+[<sup>Top</sup>](#table-of-contents)
 
 #### Before you begin
 
@@ -157,10 +159,12 @@ controlplane $
 ----
 
 ## About the Project
+[<sup>Top</sup>](#table-of-contents)
 
 ----
 
 ## Conventions
+[<sup>Top</sup>](#table-of-contents)
 
 #### Semantic Versioning
 Helm uses [Semantic Versioning](https://semver.org) for Charts and Helm itself.
@@ -197,6 +201,7 @@ The term chart does not need to be capitalized, as it is not a proper noun.
 ----
 
 ## Use Cases
+[<sup>Top</sup>](#table-of-contents)
 
 #### Complementary Operations
 
