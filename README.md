@@ -12,7 +12,7 @@
 ## Concepts
 [<sup>Top</sup>](#table-of-contents)
 
-#### Quick Definitions
+### Quick Definitions
 
 Term     | Description
 ---      | ---
@@ -24,7 +24,7 @@ Repository (repo) | A place to store and search for versioned **charts**. Its an
 Helm Hub (artifacthub.io) | A portal for finding Helm charts across community **repos**.
 Plugin | A Helm client extension providing extra sub-commands or features (e.g. `helm diff`).
 
-#### Introductory Reading
+### Introductory Reading
 
 **Helm** is a **Package Manager** for **Kubernetes**.
 
@@ -110,14 +110,14 @@ A **Plugin** is a Helm client extension providing extra sub-commands or features
 ## Get Interactive !
 [<sup>Top</sup>](#table-of-contents)
 
-#### Before you begin
+### Before you begin
 
 > Note: You need to have a Kubernetes cluster, and the kubectl command-line tool must be configured to communicate with your cluster. If you do not already have a cluster, you can create one by using minikube or you can use one of these Kubernetes playgrounds:
 
 + [Katacoda](https://www.katacoda.com/courses/kubernetes/playground)
 + [Play with Kubernetes](https://labs.play-with-k8s.com/)
 
-#### Run a helm container
+### Run a helm container
 > The fastest feedback is Interactive !
 
 Run an interactive terminal in a new container from the container image `doughgle/helm-cheat-sheet`. The container image has `helm` client pre-installed and helm bash completion pre-configured.
@@ -130,7 +130,7 @@ $ sudo docker run --rm \
 -it doughgle/get-interactive-helm bash
 ```
 
-#### Interactive Example
+### Interactive Example
 
 Use double `<TAB>` to auto-complete `helm` commands.
 
@@ -149,7 +149,7 @@ W1219 03:52:04.650624      48 loader.go:223] Config not found: /etc/kubernetes/u
 version.BuildInfo{Version:"v3.3.4", GitCommit:"a61ce5633af99708171414353ed49547cf05013d", GitTreeState:"clean", GoVersion:"go1.14.9"}
 ```
 
-#### Install a chart
+### Install a chart
 
 ```bash
 $ helm repo add bitnami https://charts.bitnami.com/bitnami
@@ -175,7 +175,7 @@ controlplane $
 ## Conventions
 [<sup>Top</sup>](#table-of-contents)
 
-#### Semantic Versioning
+### Semantic Versioning
 Helm uses [Semantic Versioning](https://semver.org) for Charts and Helm itself.
 
 The latest version of Helm (at the time of writing) is:
@@ -195,12 +195,12 @@ Examples:
 
 > When SemVer versions are stored in Kubernetes labels, we conventionally alter the + character to an _ character, as labels do not allow the + sign as a value.
 
-#### Chart Naming
+### Chart Naming
 The directory that contains a chart MUST have the same name as the chart.
 Chart name must be lowercase letters, numbers, and/or dashes
 e.g. helm-cheat-sheet
 
-#### Grammar
+### Grammar
 `helm` is the command line tool.
 
 *Helm* is the project.
@@ -212,7 +212,7 @@ The term chart does not need to be capitalized, as it is not a proper noun.
 ## Use Cases
 [<sup>Top</sup>](#table-of-contents)
 
-#### Complementary Operations
+### Complementary Operations
 
 > [flags] and [global flags] options omitted for brevity
 
@@ -222,7 +222,7 @@ Operation | | Complementary Operation | |
 **Upgrade** | `helm upgrade [RELEASE] [CHART]` | **Rollback** | `helm rollback <RELEASE> [REVISION]`
 **Sign** | `helm package [CHART_PATH] [...] --sign` | **Verify** | `helm verify PATH`
 
-#### Chart Development
+### Chart Development
 
 Operation | Description | |
 --- | --- | ---
