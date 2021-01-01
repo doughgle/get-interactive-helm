@@ -110,6 +110,8 @@ A **Plugin** is a Helm client extension providing extra sub-commands or features
 ## Get Interactive !
 [<sup>Top</sup>](#table-of-contents)
 
+> The fastest feedback is Interactive !
+
 ### Before you begin
 
 > Note: You need to have a Kubernetes cluster, and the kubectl command-line tool must be configured to communicate with your cluster. If you do not already have a cluster, you can create one by using minikube or you can use one of these Kubernetes playgrounds:
@@ -117,16 +119,27 @@ A **Plugin** is a Helm client extension providing extra sub-commands or features
 + [Katacoda](https://www.katacoda.com/courses/kubernetes/playground)
 + [Play with Kubernetes](https://labs.play-with-k8s.com/)
 
-### Run a helm container
-> The fastest feedback is Interactive !
+#### Katacoda
 
-Run an interactive terminal in a new container from the container image `doughgle/helm-cheat-sheet`. The container image has `helm` client pre-installed and helm bash completion pre-configured.
+1. Launch the [Katacode Kubernetes Playground](https://www.katacoda.com/courses/kubernetes/playground).
+1. In the `controlplane` terminal, **`helm` is already pre-installed** and **helm auto-completion is pre-configured**.
+1. To get interactive, go to [Interactive Example](#interactive-example).
+
+#### Play with Kubernetes
+
+1. Launch [Play with Kubernetes](https://labs.play-with-k8s.com/).
+1. Follow the in-terminal instructions to bootstrap a kubernetes cluster.
+> Tip: Copy-paste by highlighting the text to copy and middle-mouse button to paste.
+1. To get interactive, go to [Run a helm container](#run-a-helm-container).
+
+### Run a helm container
+
+Run an interactive terminal in a new container from the container image `doughgle/helm-cheat-sheet`. The container image has **`helm` client pre-installed** and **helm auto-completion is pre-configured**.
 
 
 ```bash
-$ sudo docker run --rm \
+$ docker run --rm \
 -v $HOME/.kube/config:/home/getia/.kube/config:ro \
--e KUBECONFIG=/etc/kubernetes/user.kubeconfig \
 -it doughgle/get-interactive-helm bash
 ```
 
@@ -135,34 +148,64 @@ $ sudo docker run --rm \
 Use double `<TAB>` to auto-complete `helm` commands.
 
 ```
-bash-5.0# helm <TAB><TAB>
+$ helm <TAB><TAB>
 completion  dependency  env         helm-git    install     list        plugin      repo        s3          secrets     status      test        upgrade     version     
 create      diff        get         history     lint        package     pull        rollback    search      show        template    uninstall   verify
 ```
 ```
-bash-5.0$ helm ver
+$ helm ver
 verify   version
 ```
 ```
-bash-5.0$ helm version
-W1219 03:52:04.650624      48 loader.go:223] Config not found: /etc/kubernetes/user.kubeconfig
+$ helm version
 version.BuildInfo{Version:"v3.3.4", GitCommit:"a61ce5633af99708171414353ed49547cf05013d", GitTreeState:"clean", GoVersion:"go1.14.9"}
 ```
 
-### Install a chart
+You can explore each sub-command and `--` options using `<TAB><TAB>`.
 
-```bash
+##### Install a chart
+
+If you want to see a brief command usage, just enter the sub-command alone.
+
+```
+$ helm install
+Error: "helm install" requires at least 1 argument
+
+Usage:  helm install [NAME] [CHART] [flags]
+```
+
+If you want more detail, use `helm help <sub-command>`
+
+```
+$ helm help install
+
+This command installs a chart archive.
+
+The install argument must be a chart reference, a path to a packaged chart,
+a path to an unpacked chart directory or a URL.
+
+...
+```
+
+Installing the nginx webserver is like the hello world of kubernetes apps.
+First, add the `bitnami` helm repository.
+
+```
 $ helm repo add bitnami https://charts.bitnami.com/bitnami
+```
+
+Install nginx. Name the release `my-release`.
+
+```
 $ helm install my-release bitnami/nginx
 ```
 
 Now list the releases to see `my-release`.
 
-```bash
-helm ls
+```
+$ helm ls
 NAME            NAMESPACE       REVISION        UPDATED                                 STATUS          CHART           APP VERSION
 my-release      default         1               2020-12-17 03:44:34.106476211 +0000 UTC deployed        nginx-8.2.2     1.19.6
-controlplane $
 ```
 
 ----
