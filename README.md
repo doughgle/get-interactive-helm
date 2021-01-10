@@ -1,5 +1,8 @@
 # Get Interactive with Helm !
 
+Helm is a Package Manager for Kubernetes.
+This is a cheat sheet for learning Helm interactively.
+
 > The fastest feedback is Interactive !
 
 ## Table of Contents
