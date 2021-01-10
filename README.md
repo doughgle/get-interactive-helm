@@ -3,7 +3,7 @@
 Helm is a Package Manager for Kubernetes.
 This is a cheat sheet for learning Helm interactively.
 
-> The fastest feedback is Interactive !
+> The fastest feedback is interactive !
 
 ## Table of Contents
 1. [Concepts](#concepts)
@@ -23,7 +23,7 @@ Helm (helm)    | **Package Manager** for **Kubernetes**.
 chart    | Software package for **Kubernetes**.
 Release  | A named, deployed instance of the **chart**.
 Revision | Snapshot of a **Release** in history.
-Repository (repo) | A place to store and search for versioned **charts**. Its an indexed filesystem of `.tgz` archives.
+Repository (repo) | A place to store and search for versioned **charts**.
 Helm Hub (artifacthub.io) | A portal for finding Helm charts across community **repos**.
 Plugin | A Helm client extension providing extra sub-commands or features (e.g. `helm diff`).
 
@@ -38,7 +38,11 @@ Just like:
 >
 > Chocolatey is a Package Manager for Windows.
 
-A **Package Manager** knows how to install, configure, upgrade, verify and uninstall packages and their dependencies.
+A **Package Manager** knows how to find, install, configure, upgrade, verify and uninstall packages (and their dependencies).
+
+A Package Manager can search repositories to find packages.
+
+A Helm **Repository** (or repo) is a place to store and search for versioned charts. Its an indexed filesystem of .tgz archives.
 
 ###### Comparison of Package Managers
 Package Manager | Package Type | File Type
@@ -166,7 +170,7 @@ version.BuildInfo{Version:"v3.3.4", GitCommit:"a61ce5633af99708171414353ed49547c
 
 You can explore each sub-command and `--` options using `<TAB><TAB>`.
 
-##### Install a chart
+#### Install a chart
 
 If you want to see a brief command usage, just enter the sub-command alone.
 
