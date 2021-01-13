@@ -1,4 +1,4 @@
-FROM quay.io/roboll/helmfile:helm3-v0.132.3
+FROM quay.io/roboll/helmfile:helm3-v0.137.0
 
 RUN apk update && \
     apk add bash-completion && \
