@@ -143,12 +143,14 @@ A **Plugin** is a Helm client extension providing extra sub-commands or features
 
 Run an interactive terminal in a new container from the container image `doughgle/helm-cheat-sheet`. The container image has **`helm` client pre-installed** and **helm auto-completion is pre-configured**.
 
-
 ```bash
 $ docker run --rm \
--v $HOME/.kube/config:/home/getia/.kube/config:ro \
--it doughgle/get-interactive-helm bash
+-v "$HOME/.kube:/root/.kube:ro" \
+-it doughgle/get-interactive-helm \
+bash
 ```
+
+> If the current host user is not root, `sudo` prefixing the command may be required for docker permission.
 
 ### Interactive Example
 
