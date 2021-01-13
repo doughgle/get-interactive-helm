@@ -220,6 +220,20 @@ my-release      default         1               2020-12-17 03:44:34.106476211 +0
 ## About the Project
 [<sup>Top</sup>](#table-of-contents)
 
+### What problems does it solve? What questions does it answer?
+
++ Where can I **find** a kubernetes package for application X?
+
++ How can I install this application with sensible defaults?
+
++ How can I customize the configuration of the application for my requirements?
+
++ How can I share my pre-packaged version of this application?
+
++ Piles of duplicated YAML.
+
++ Incompatibility of different
+
 ----
 
 ## Conventions
@@ -279,3 +293,4 @@ Operation | Description | |
  **Create**  | create a new chart with the given name | `helm create NAME`
  **Lint**    | examine a chart for possible issues | `helm lint PATH`
  **Package** | package a chart directory into a chart archive | `helm package [CHART_PATH] [...]`
+ **Template** | Render chart templates locally and display the output. | `helm template NAME CHART`
