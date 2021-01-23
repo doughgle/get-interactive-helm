@@ -1,7 +1,7 @@
 # Get Interactive with Helm !
 
 Helm is a Package Manager for Kubernetes.
-This is a cheat sheet for learning Helm interactively.
+This is a tutorial for learning Helm interactively.
 
 > The fastest feedback is interactive !
 
@@ -154,28 +154,34 @@ bash
 
 ### Interactive Example
 
-Use double `<TAB>` to auto-complete `helm` commands.
-
+#### See available Commands
+Use double `<TAB>` to auto-complete `helm` commands. The available commands can be discovered interactively and are context sensitive to the helm version and helm plugins that are installed.
 ```
 $ helm <TAB><TAB>
 completion  dependency  env         helm-git    install     list        plugin      repo        s3          secrets     status      test        upgrade     version     
 create      diff        get         history     lint        package     pull        rollback    search      show        template    uninstall   verify
 ```
+
+Narrow down the results using more `<TAB>`s.
 ```
-$ helm ver
+$ helm v<TAB>
 verify   version
 ```
+
+Execute the command.
 ```
 $ helm version
 version.BuildInfo{Version:"v3.3.4", GitCommit:"a61ce5633af99708171414353ed49547cf05013d", GitTreeState:"clean", GoVersion:"go1.14.9"}
 ```
 
-You can explore each sub-command and `--` options using `<TAB><TAB>`.
+You can also discover available sub-commands using `<TAB><TAB>`.
 
-#### Install a chart
+```
+bash-5.0# helm search <TAB><TAB>
+hub   repo
+```
 
-If you want to see a brief command usage, just enter the sub-command alone.
-
+#### See Command usage
 ```
 $ helm install
 Error: "helm install" requires at least 1 argument
@@ -183,10 +189,11 @@ Error: "helm install" requires at least 1 argument
 Usage:  helm install [NAME] [CHART] [flags]
 ```
 
-If you want more detail, use `helm help <sub-command>`
+#### Get Command help
+If you want more detail, append a `-h` or `--help`.
 
 ```
-$ helm help install
+$ helm install -h
 
 This command installs a chart archive.
 
@@ -196,25 +203,55 @@ a path to an unpacked chart directory or a URL.
 ...
 ```
 
-Installing the nginx webserver is like the hello world of kubernetes apps.
-First, add the `bitnami` helm repository.
+#### See available Flags (command line options)
+...and discover available command flags and global flags using `--<TAB><TAB>`. The available flags can be discovered interactively and are context sensitive to the helm command or sub-command.
 
 ```
-$ helm repo add bitnami https://charts.bitnami.com/bitnami
+bash-5.0# helm search repo --
+--debug               --kube-as-group       --kube-context        --kubeconfig          --namespace           --regexp              --repository-cache=   --version=            
+--devel               --kube-as-group=      --kube-context=       --kubeconfig=         --namespace=          --registry-config     --repository-config   --versions            
+--kube-apiserver      --kube-as-user        --kube-token          --max-col-width       --output              --registry-config=    --repository-config=  
+--kube-apiserver=     --kube-as-user=       --kube-token=         --max-col-width=      --output=             --repository-cache    --version
 ```
 
-Install nginx. Name the release `my-release`.
+#### See available Environment Variables
+
+You can discover environment variables by running the `helm` command.
 
 ```
-$ helm install my-release bitnami/nginx
-```
+bash-5.0# helm
+The Kubernetes package manager
 
-Now list the releases to see `my-release`.
+Common actions for Helm:
 
-```
-$ helm ls
-NAME            NAMESPACE       REVISION        UPDATED                                 STATUS          CHART           APP VERSION
-my-release      default         1               2020-12-17 03:44:34.106476211 +0000 UTC deployed        nginx-8.2.2     1.19.6
+- helm search:    search for charts
+- helm pull:      download a chart to your local directory to view
+- helm install:   upload the chart to Kubernetes
+- helm list:      list releases of charts
+
+Environment variables:
+
+| Name                               | Description                                                                       |
+|------------------------------------|-----------------------------------------------------------------------------------|
+| $HELM_CACHE_HOME                   | set an alternative location for storing cached files.                             |
+| $HELM_CONFIG_HOME                  | set an alternative location for storing Helm configuration.                       |
+| $HELM_DATA_HOME                    | set an alternative location for storing Helm data.                                |
+| $HELM_DEBUG                        | indicate whether or not Helm is running in Debug mode                             |
+| $HELM_DRIVER                       | set the backend storage driver. Values are: configmap, secret, memory, postgres   |
+| $HELM_DRIVER_SQL_CONNECTION_STRING | set the connection string the SQL storage driver should use.                      |
+| $HELM_MAX_HISTORY                  | set the maximum number of helm release history.                                   |
+| $HELM_NAMESPACE                    | set the namespace used for the helm operations.                                   |
+| $HELM_NO_PLUGINS                   | disable plugins. Set HELM_NO_PLUGINS=1 to disable plugins.                        |
+| $HELM_PLUGINS                      | set the path to the plugins directory                                             |
+| $HELM_REGISTRY_CONFIG              | set the path to the registry config file.                                         |
+| $HELM_REPOSITORY_CACHE             | set the path to the repository cache directory                                    |
+| $HELM_REPOSITORY_CONFIG            | set the path to the repositories file.                                            |
+| $KUBECONFIG                        | set an alternative Kubernetes configuration file (default "~/.kube/config")       |
+| $HELM_KUBEAPISERVER                | set the Kubernetes API Server Endpoint for authentication                         |
+| $HELM_KUBEASGROUPS                 | set the Groups to use for impersonation using a comma-separated list.             |
+| $HELM_KUBEASUSER                   | set the Username to impersonate for the operation.                                |
+| $HELM_KUBECONTEXT                  | set the name of the kubeconfig context.                                           |
+| $HELM_KUBETOKEN                    | set the Bearer KubeToken used for authentication.                                 |
 ```
 
 ----
@@ -296,3 +333,27 @@ Operation | Description | |
  **Lint**    | examine a chart for possible issues | `helm lint PATH`
  **Package** | package a chart directory into a chart archive | `helm package [CHART_PATH] [...]`
  **Template** | Render chart templates locally and display the output. | `helm template NAME CHART`
+
+### Examples
+
+#### Install a chart
+Installing the nginx webserver is like the hello world of kubernetes apps.
+First, add the `bitnami` helm repository.
+
+```
+$ helm repo add bitnami https://charts.bitnami.com/bitnami
+```
+
+Install nginx. Name the release `my-release`.
+
+```
+$ helm install my-release bitnami/nginx
+```
+
+Now list the releases to see `my-release`.
+
+```
+$ helm ls
+NAME            NAMESPACE       REVISION        UPDATED                                 STATUS          CHART           APP VERSION
+my-release      default         1               2020-12-17 03:44:34.106476211 +0000 UTC deployed        nginx-8.2.2     1.19.6
+```
