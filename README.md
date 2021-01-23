@@ -259,7 +259,7 @@ Environment variables:
 ## About the Project
 [<sup>Top</sup>](#table-of-contents)
 
-### What problems does it solve? What questions does it answer?
+### What questions does it answer?
 
 + Where can I **find** a kubernetes package for application X?
 
@@ -269,9 +269,11 @@ Environment variables:
 
 + How can I share my pre-packaged version of this application?
 
+### What problems does it solve?
 + Piles of duplicated YAML.
-
-+ Incompatibility of different
++ API version incompatibility between services (e.g. fronend and backend).
++ Complex installations and upgrades.
++ A community to find and share reuable packages for Kubernetes.
 
 ----
 
